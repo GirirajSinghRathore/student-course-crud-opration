@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.crudoperation.model.Course;
 import com.crudoperation.model.Student;
+import com.crudoperation.repository.CourseRepository;
 import com.crudoperation.repository.StudentRepository;
 
 
@@ -27,10 +28,19 @@ public class StudentController {
 	 */
 	@Autowired
 	private StudentRepository sr;
+	@Autowired
+	private CourseRepository cr;
 	@PostMapping("/add-student")
-	public ResponseEntity<Student> createCategory(@RequestBody Student student) {
+	public ResponseEntity<Student> createStudent(@RequestBody Student student) {
 		System.out.println("In create Category");
 		
 		return new ResponseEntity<Student>(sr.save(student), HttpStatus.CREATED);
+	}
+	
+	@PostMapping("/add-student")
+	public ResponseEntity<Course> createCourse(@RequestBody Course c) {
+		
+		 
+		return new ResponseEntity<Course>(cr.save(c), HttpStatus.CREATED);
 	}
 }
